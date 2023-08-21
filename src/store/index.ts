@@ -14,12 +14,16 @@ const initialState: InitialState = {
 const YoutubeSlice = createSlice({
   name: "YoutubeApp",
   initialState,
-  reducers: {},
+  reducers: {
+    clearVideos: (state) => {
+      (state.videos = []), (state.nextPageToken = null);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
-        state.videos = action.payload.parsedData;
-        state.nextPageToken = action.payload.nextPageToken;
-    })
+      state.videos = action.payload.parsedData;
+      state.nextPageToken = action.payload.nextPageToken;
+    });
   },
 });
 
@@ -28,6 +32,8 @@ export const store = configureStore({
     youtubeApp: YoutubeSlice.reducer,
   },
 });
+
+export const { clearVideos } = YoutubeSlice.actions;
 
 export type rootState = ReturnType<typeof store.getState>;
 export type AppDispatch = ReturnType<typeof store.dispatch>;
