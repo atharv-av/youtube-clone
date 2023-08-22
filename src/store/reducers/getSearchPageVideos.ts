@@ -2,23 +2,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { rootState } from "..";
 import { YOUTUBE_API_URL } from "../../utils/constants";
 import axios from "axios";
-import { HomePageVideos } from "../../Types";
+import { SearchPageVideos } from "../../Types";
 import { parseData } from "../../utils";
 
 export const API_KEY = "AIzaSyBD8Chyg96iUeq21uOKK9ssl1kvsunBd6Q";
 
-export const getHomePageVideos = createAsyncThunk(
-  "youtubeApp/homePageVideos",
+export const getSearchPageVideos = createAsyncThunk(
+  "youtubeApp/searchPageVideos",
   async (isNext: boolean, { getState }) => {
     const {
-      youtubeApp: { nextPageToken: nextPageTokenFromState, videos },
+      youtubeApp: { nextPageToken: nextPageTokenFromState, videos, searchTerm },
     } = getState() as rootState;
     const {
       data: { items, nextPageToken },
     } = await axios.get(
-      `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}`:""}`
+      `${YOUTUBE_API_URL}/search?q=${searchTerm}&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}`:""}`
     );
-    const parsedData: HomePageVideos[] = await parseData(items)
+    const parsedData: SearchPageVideos[] = await parseData(items)
     return {parsedData: [...videos, ...parsedData], nextPageToken}
   }
 );

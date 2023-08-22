@@ -7,7 +7,7 @@ import {
 import { YOUTUBE_API_URL } from "./constants";
 import { HomePageVideos } from "../Types";
 
-const API_KEY = "AIzaSyBHEJSNaE6eY0F__JHV7A7DBj7iWYRh5iQ";
+const API_KEY = "AIzaSyBD8Chyg96iUeq21uOKK9ssl1kvsunBd6Q";
 
 export const parseData = async (items: any[]) => {
   try {
