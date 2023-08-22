@@ -6,8 +6,8 @@ import {
 } from "./index";
 import { YOUTUBE_API_URL } from "./constants";
 import { HomePageVideos } from "../Types";
+import { API_KEY } from "./constants";
 
-const API_KEY = "AIzaSyBD8Chyg96iUeq21uOKK9ssl1kvsunBd6Q";
 
 export const parseData = async (items: any[]) => {
   try {

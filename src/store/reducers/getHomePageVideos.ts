@@ -4,8 +4,7 @@ import { YOUTUBE_API_URL } from "../../utils/constants";
 import axios from "axios";
 import { HomePageVideos } from "../../Types";
 import { parseData } from "../../utils";
-
-export const API_KEY = "AIzaSyBD8Chyg96iUeq21uOKK9ssl1kvsunBd6Q";
+import { API_KEY } from "../../utils/constants";
 
 export const getHomePageVideos = createAsyncThunk(
   "youtubeApp/homePageVideos",

@@ -10,7 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/watch" element={<Watch />} />
+        {/* Modify the route for /watch to accept an "id" parameter */}
+        <Route path="/watch/:id" element={<Watch />} />
       </Routes>
     </BrowserRouter>
   );
